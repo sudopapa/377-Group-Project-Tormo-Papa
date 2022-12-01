@@ -38,7 +38,47 @@ html {
     padding-bottom:1.5rem;
   }
 
+  .box {
+    background-color: rgb(249, 232, 199);
+    /* border: 2px dashed; */
+    border-radius: 4px;
+  
+    width: fit-content;
+    height:fit-content;
+    padding: 1.5rem;
+    margin: 0 auto;
+  }
+  
+  .title_section {
+    background-color: rgb(249, 232, 199);
+    flex: 0 1 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 1rem;
+    padding: 1.5rem; 
+  }
 
+  .top_right_section {
+    background-color: rgb(249, 232, 199);
+    flex: 0 1 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .primary_section {
+    background-color: rgb(249, 232, 199);
+    flex: 1 2 auto;
+    margin: 1rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    
+  }
 
   
   /* A Media Query For Small Screens */
@@ -46,7 +86,7 @@ html {
   @media only screen and (max-width: 736px){
     /* Rules in here will only apply when a screen is the correct size */
     .container {
-      background-color: rgba(240, 74, 157, 0.65);
+      background-color: rgb(199, 186, 159);
       flex-direction: column;
       justify-content: center;
       align-items: center;
