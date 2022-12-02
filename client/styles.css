@@ -68,6 +68,16 @@ html {
     margin: 1rem;
     padding: 1.5rem;
   }
+
+  .top_left_section {
+    background-color: rgb(249, 232, 199);
+    flex: 0 1 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
   
   .primary_section {
     background-color: rgb(249, 232, 199);
