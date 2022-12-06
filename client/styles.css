@@ -40,6 +40,10 @@ html {
     padding-bottom:1.5rem;
   }
 
+  table, th, td {
+    border: 1px solid black;
+  }
+
   .box {
     background-color: rgb(249, 232, 199);
     /* border: 2px dashed; */
