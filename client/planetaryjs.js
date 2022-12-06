@@ -171,7 +171,7 @@
           planet.plugins.topojson.world = config.world;
           setTimeout(done, 0);
         } else {
-          var file = config.file || 'world-110m.json';
+          var file = config.file || 'https://ttormo.github.io/377-Group-Project-Tormo-Papa/client/world-110m.json';
           d3.json(file, function(err, world) {
             if (err) {
               throw new Error("Could not load JSON " + file);
