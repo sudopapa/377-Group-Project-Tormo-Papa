@@ -30,7 +30,7 @@
     L.Layer = L.Class;
   }
 
-  const HeatmapOverlay = L.Layer.extend({
+  var HeatmapOverlay = L.Layer.extend({
 
     initialize: function (config) {
       this.cfg = config;
@@ -131,7 +131,7 @@
         const latlngPoint = { x: Math.round(point.x), y: Math.round(point.y) };
         latlngPoint[valueField] = value;
 
-        let radius;
+        var radius;
 
         if (entry.radius) {
           radius = entry.radius * radiusMultiplier;
@@ -158,7 +158,7 @@
       const valueField = this.cfg.valueField || 'value';
 
       // transform data to latlngs
-      const {data} = data;
+      var {data} = data;
       let len = data.length;
       const d = [];
 
