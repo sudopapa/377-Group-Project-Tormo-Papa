@@ -97,6 +97,10 @@ html {
     
   }
 
+  #map {
+    height: 480px;
+  }
+
   
   /* A Media Query For Small Screens */
   
