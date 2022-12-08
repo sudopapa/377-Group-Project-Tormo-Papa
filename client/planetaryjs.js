@@ -6,35 +6,31 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['d3', 'topojson'], function(d3, topojson) {
-      return (root.planetaryjs = factory(d3, topojson, root));
-    });
+    define(['d3', 'topojson'], (d3, topojson) => (root.planetaryjs = factory(d3, topojson, root)));
   } else if (typeof exports === 'object') {
     module.exports = factory(require('d3'), require('topojson'));
   } else {
     root.planetaryjs = factory(root.d3, root.topojson, root);
   }
-}(this, function(d3, topojson, window) {
-  'use strict';
-
-  var originalPlanetaryjs = null;
+}(this, (d3, topojson, window) => {
+  let originalPlanetaryjs = null;
   if (window) originalPlanetaryjs = window.planetaryjs;
-  var plugins = [];
+  const plugins = [];
 
-  var doDrawLoop = function(planet, canvas, hooks) {
-    d3.timer(function() {
+  const doDrawLoop = function(planet, canvas, hooks) {
+    d3.timer(() => {
       if (planet.stopped) {
         return true;
       }
 
       planet.context.clearRect(0, 0, canvas.width, canvas.height);
-      for (var i = 0; i < hooks.onDraw.length; i++) {
+      for (let i = 0; i < hooks.onDraw.length; i++) {
         hooks.onDraw[i]();
       }
     });
   };
 
-  var initPlugins = function(planet, localPlugins) {
+  const initPlugins = function(planet, localPlugins) {
     // Add the global plugins to the beginning of the local ones
     for (var i = plugins.length - 1; i >= 0; i--) {
       localPlugins.unshift(plugins[i]);
@@ -42,10 +38,8 @@
 
     // Load the default plugins if none have been loaded so far
     if (localPlugins.length === 0) {
-      if (planetaryjs.plugins.earth)
-        planet.loadPlugin(planetaryjs.plugins.earth());
-      if (planetaryjs.plugins.pings)
-        planet.loadPlugin(planetaryjs.plugins.pings());
+      if (planetaryjs.plugins.earth) { planet.loadPlugin(planetaryjs.plugins.earth()); }
+      if (planetaryjs.plugins.pings) { planet.loadPlugin(planetaryjs.plugins.pings()); }
     }
 
     for (i = 0; i < localPlugins.length; i++) {
@@ -53,15 +47,15 @@
     }
   };
 
-  var runOnInitHooks = function(planet, canvas, hooks) {
+  const runOnInitHooks = function(planet, canvas, hooks) {
     // onInit hooks can be asynchronous if they take a parameter;
     // iterate through them one at a time
     if (hooks.onInit.length) {
-      var completed = 0;
-      var doNext = function(callback) {
-        var next = hooks.onInit[completed];
+      let completed = 0;
+      const doNext = function(callback) {
+        const next = hooks.onInit[completed];
         if (next.length) {
-          next(function() {
+          next(() => {
             completed++;
             callback();
           });
@@ -81,7 +75,7 @@
     }
   };
 
-  var startDraw = function(planet, canvas, localPlugins, hooks) {
+  const startDraw = function(planet, canvas, localPlugins, hooks) {
     planet.canvas = canvas;
     planet.context = canvas.getContext('2d');
 
@@ -106,8 +100,8 @@
     },
 
     planet: function() {
-      var localPlugins = [];
-      var hooks = {
+      const localPlugins = [];
+      const hooks = {
         onInit: [],
         onDraw: [],
         onStop: []
@@ -138,14 +132,14 @@
 
         stop: function() {
           planet.stopped = true;
-          for (var i = 0; i < hooks.onStop.length; i++) {
+          for (let i = 0; i < hooks.onStop.length; i++) {
             hooks.onStop[i](planet);
           }
         },
 
         withSavedContext: function(fn) {
           if (!this.context) {
-            throw new Error("No canvas to fetch context for");
+            throw new Error('No canvas to fetch context for');
           }
 
           this.context.save();
@@ -166,15 +160,15 @@
     return function(planet) {
       planet.plugins.topojson = {};
 
-      planet.onInit(function(done) {
+      planet.onInit((done) => {
         if (config.world) {
           planet.plugins.topojson.world = config.world;
           setTimeout(done, 0);
         } else {
-          var file = config.file || 'https://ttormo.github.io/377-Group-Project-Tormo-Papa/client/world-110m.json';
-          d3.json(file, function(err, world) {
+          const file = config.file || 'world-110m.json';
+          d3.json(file, (err, world) => {
             if (err) {
-              throw new Error("Could not load JSON " + file);
+              throw new Error(`Could not load JSON ${file}`);
             }
             planet.plugins.topojson.world = world;
             done();
@@ -186,8 +180,8 @@
 
   planetaryjs.plugins.oceans = function(config) {
     return function(planet) {
-      planet.onDraw(function() {
-        planet.withSavedContext(function(context) {
+      planet.onDraw(() => {
+        planet.withSavedContext((context) => {
           context.beginPath();
           planet.path.context(context)({type: 'Sphere'});
 
@@ -200,15 +194,15 @@
 
   planetaryjs.plugins.land = function(config) {
     return function(planet) {
-      var land = null;
+      let land = null;
 
-      planet.onInit(function() {
-        var world = planet.plugins.topojson.world;
+      planet.onInit(() => {
+        const {world} = planet.plugins.topojson;
         land = topojson.feature(world, world.objects.land);
       });
 
-      planet.onDraw(function() {
-        planet.withSavedContext(function(context) {
+      planet.onDraw(() => {
+        planet.withSavedContext((context) => {
           context.beginPath();
           planet.path.context(context)(land);
 
@@ -229,8 +223,8 @@
 
   planetaryjs.plugins.borders = function(config) {
     return function(planet) {
-      var borders = null;
-      var borderFns = {
+      let borders = null;
+      const borderFns = {
         internal: function(a, b) {
           return a.id !== b.id;
         },
@@ -242,15 +236,15 @@
         }
       };
 
-      planet.onInit(function() {
-        var world = planet.plugins.topojson.world;
-        var countries = world.objects.countries;
-        var type = config.type || 'internal';
+      planet.onInit(() => {
+        const {world} = planet.plugins.topojson;
+        const {countries} = world.objects;
+        const type = config.type || 'internal';
         borders = topojson.mesh(world, countries, borderFns[type]);
       });
 
-      planet.onDraw(function() {
-        planet.withSavedContext(function(context) {
+      planet.onDraw(() => {
+        planet.withSavedContext((context) => {
           context.beginPath();
           planet.path.context(context)(borders);
           context.strokeStyle = config.stroke || 'gray';
@@ -263,10 +257,10 @@
 
   planetaryjs.plugins.earth = function(config) {
     config = config || {};
-    var topojsonOptions = config.topojson || {};
-    var oceanOptions = config.oceans || {};
-    var landOptions = config.land || {};
-    var bordersOptions = config.borders || {};
+    const topojsonOptions = config.topojson || {};
+    const oceanOptions = config.oceans || {};
+    const landOptions = config.land || {};
+    const bordersOptions = config.borders || {};
 
     return function(planet) {
       planetaryjs.plugins.topojson(topojsonOptions)(planet);
@@ -277,15 +271,15 @@
   };
 
   planetaryjs.plugins.pings = function(config) {
-    var pings = [];
+    let pings = [];
     config = config || {};
 
-    var addPing = function(lng, lat, options) {
+    const addPing = function(lng, lat, options) {
       options = options || {};
       options.color = options.color || config.color || 'white';
       options.angle = options.angle || config.angle || 5;
-      options.ttl   = options.ttl   || config.ttl   || 2000;
-      var ping = { time: new Date(), options: options };
+      options.ttl = options.ttl || config.ttl || 2000;
+      const ping = { time: new Date(), options: options };
       if (config.latitudeFirst) {
         ping.lat = lng;
         ping.lng = lat;
@@ -296,11 +290,11 @@
       pings.push(ping);
     };
 
-    var drawPings = function(planet, context, now) {
-      var newPings = [];
-      for (var i = 0; i < pings.length; i++) {
-        var ping = pings[i];
-        var alive = now - ping.time;
+    const drawPings = function(planet, context, now) {
+      const newPings = [];
+      for (let i = 0; i < pings.length; i++) {
+        const ping = pings[i];
+        const alive = now - ping.time;
         if (alive < ping.options.ttl) {
           newPings.push(ping);
           drawPing(planet, context, now, alive, ping);
@@ -310,11 +304,11 @@
     };
 
     var drawPing = function(planet, context, now, alive, ping) {
-      var alpha = 1 - (alive / ping.options.ttl);
-      var color = d3.rgb(ping.options.color);
-      color = "rgba(" + color.r + "," + color.g + "," + color.b + "," + alpha + ")";
+      const alpha = 1 - (alive / ping.options.ttl);
+      let color = d3.rgb(ping.options.color);
+      color = `rgba(${color.r},${color.g},${color.b},${alpha})`;
       context.strokeStyle = color;
-      var circle = d3.geo.circle().origin([ping.lng, ping.lat])
+      const circle = d3.geo.circle().origin([ping.lng, ping.lat])
         .angle(alive / ping.options.ttl * ping.options.angle)();
       context.beginPath();
       planet.path.context(context)(circle);
@@ -326,9 +320,9 @@
         add: addPing
       };
 
-      planet.onDraw(function() {
-        var now = new Date();
-        planet.withSavedContext(function(context) {
+      planet.onDraw(() => {
+        const now = new Date();
+        planet.withSavedContext((context) => {
           drawPings(planet, context, now);
         });
       });
@@ -337,17 +331,17 @@
 
   planetaryjs.plugins.zoom = function (options) {
     options = options || {};
-    var noop = function() {};
-    var onZoomStart = options.onZoomStart || noop;
-    var onZoomEnd   = options.onZoomEnd   || noop;
-    var onZoom      = options.onZoom      || noop;
-    var afterZoom   = options.afterZoom   || noop;
-    var startScale  = options.initialScale;
-    var scaleExtent = options.scaleExtent || [50, 2000];
+    const noop = function() {};
+    const onZoomStart = options.onZoomStart || noop;
+    const onZoomEnd = options.onZoomEnd || noop;
+    const onZoom = options.onZoom || noop;
+    const afterZoom = options.afterZoom || noop;
+    const startScale = options.initialScale;
+    const scaleExtent = options.scaleExtent || [50, 2000];
 
     return function(planet) {
-      planet.onInit(function() {
-        var zoom = d3.behavior.zoom()
+      planet.onInit(() => {
+        const zoom = d3.behavior.zoom()
           .scaleExtent(scaleExtent);
 
         if (startScale !== null && startScale !== undefined) {
@@ -359,7 +353,7 @@
         zoom
           .on('zoomstart', onZoomStart.bind(planet))
           .on('zoomend', onZoomEnd.bind(planet))
-          .on('zoom', function() {
+          .on('zoom', () => {
             onZoom.call(planet);
             planet.projection.scale(d3.event.scale);
             afterZoom.call(planet);
@@ -371,32 +365,32 @@
 
   planetaryjs.plugins.drag = function(options) {
     options = options || {};
-    var noop = function() {};
-    var onDragStart = options.onDragStart || noop;
-    var onDragEnd   = options.onDragEnd   || noop;
-    var onDrag      = options.onDrag      || noop;
-    var afterDrag   = options.afterDrag   || noop;
+    const noop = function() {};
+    const onDragStart = options.onDragStart || noop;
+    const onDragEnd = options.onDragEnd || noop;
+    const onDrag = options.onDrag || noop;
+    const afterDrag = options.afterDrag || noop;
 
     return function(planet) {
-      planet.onInit(function() {
-        var drag = d3.behavior.drag()
+      planet.onInit(() => {
+        const drag = d3.behavior.drag()
           .on('dragstart', onDragStart.bind(planet))
           .on('dragend', onDragEnd.bind(planet))
-          .on('drag', function() {
+          .on('drag', () => {
             onDrag.call(planet);
-            var dx = d3.event.dx;
-            var dy = d3.event.dy;
-            var rotation = planet.projection.rotate();
-            var radius = planet.projection.scale();
-            var scale = d3.scale.linear()
+            const {dx} = d3.event;
+            const {dy} = d3.event;
+            const rotation = planet.projection.rotate();
+            const radius = planet.projection.scale();
+            const scale = d3.scale.linear()
               .domain([-1 * radius, radius])
               .range([-90, 90]);
-            var degX = scale(dx);
-            var degY = scale(dy);
+            const degX = scale(dx);
+            const degY = scale(dy);
             rotation[0] += degX;
             rotation[1] -= degY;
-            if (rotation[1] > 90)   rotation[1] = 90;
-            if (rotation[1] < -90)  rotation[1] = -90;
+            if (rotation[1] > 90) rotation[1] = 90;
+            if (rotation[1] < -90) rotation[1] = -90;
             if (rotation[0] >= 180) rotation[0] -= 360;
             planet.projection.rotate(rotation);
             afterDrag.call(planet);
