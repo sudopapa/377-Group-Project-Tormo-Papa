@@ -4,8 +4,8 @@ const spotifyApi = new SpotifyWebApi();
 spotifyApi.setAccessToken('BQBZp6lSx_VtsJ3lB7P52raLlzwrskbwumBEsGX-BD4lTCejdGPf9IwCJcJY98UMb2dDxSRudd6LrKd7N1gpQLTKIiT2OLVAkW-dqmjQDDilaVuHWhAFX_us25-8CFN1ivNjkECYFKrsg3JMu5D7TI14H_c1swFPr6muBeXH0oI2UjNIltBDewMF-UlY4aqu10WvBr0');
 
 // Function for querying the API
-function spotQuery() {
-  spotifyApi.searchArtists();
+function spotQuery(artist) {
+  spotifyApi.searchArtists(artist);
 }
 
 //Inject HTML
@@ -25,8 +25,8 @@ function injectHTML(list) {
 
 // Main Function
 async function mainEvent() {
-  const form = document.querySelector('.main_form'); // get your main form so you can do JS with it
-  const submit = document.querySelector('#get-spot'); // get a reference to your submit button
+  const form = document.querySelector('.main_form');
+  const submit = document.querySelector('#get-spot');
 
   form.addEventListener('input', (event) => {
     console.log('input', event.target.value);
