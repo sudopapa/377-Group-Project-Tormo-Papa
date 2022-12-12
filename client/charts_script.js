@@ -32,14 +32,15 @@ async function mainEvent() {
 
   form.addEventListener('input', (event) => {
     console.log('input', event.target.value);
-    const artist = event.target.value;
+    const albums = spotQuery(event.target.value);
+    injectHTML(albums);
   });
 
   form.addEventListener('submit', (submitEvent) => {
     submitEvent.preventDefault();
-    albums = spotQuery(artist);
-    console.log(albums);
-    injectHTML(albums);
+    // albums = spotQuery(artist);
+    // console.log(albums);
+    // injectHTML(albums);
   });
 }
 
