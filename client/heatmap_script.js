@@ -1,9 +1,8 @@
-// API Module
-// Leaflet Map w/Heatmap Code
-
+// Imports
 import { tileLayer, Map, LatLng } from 'leaflet';
 import HeatmapOverlay from 'leaflet-heatmap';
 
+// API Module
 const APIController = (function() {
   // API Methods
   const _getToken = async () => {
@@ -34,6 +33,7 @@ const APIController = (function() {
   };
 }());
 
+// Leaflet Map w/Heatmap Code
 const testData = {
   max: 8,
   data: [{lat: 24.6408, lng: 46.7728, count: 3}, {lat: 50.75, lng: -1.55, count: 1}]
