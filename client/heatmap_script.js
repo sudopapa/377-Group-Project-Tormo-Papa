@@ -1,4 +1,45 @@
 
+
+// API Module
+const APIController = (function() {
+
+
+  // API Methods
+  const _getToken = async () => {
+
+    const accessToken = 'BQACX0bVaTJ99cc7DJwDua1RqDnpj-VXOPacGoI51GypyRWNwCS2wJdlkd--TIFoVXpSNCppN1D_Xv4RvJhu8d9gHzwVOVyuzgdpzaAw96yjWAOTtXtvnQDcj8TrHXq3aIKxbgPSbIdnJJDz74jcb0lNbQztUxoemvnvdyZ0DtwyzO8QAuNXlNiMgfUNaFFm7XU';
+    return accessToken;
+  }
+
+  const _getGenres = async (token) => {
+
+    const limit = 10;
+    
+    const result = await fetch('https://api.spotify.com/v1/browse/categories', {
+      method: 'GET',
+      headers: { 'Authorization' : 'Bearer ' + token}
+    });
+
+    const data = await result.json();
+    return data.categories.items;
+
+  }
+
+  return {
+    getToken() {
+      return _getToken();
+    },
+
+    getGenres(token) {
+      return _getGenres(token);
+    }
+  }
+
+
+})();
+
+
+
 // Initial Leaflet Map
 const map = L.map('map').setView([38.9897, -76.9378], 11);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
