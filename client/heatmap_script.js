@@ -1,4 +1,9 @@
 // API Module
+// Leaflet Map w/Heatmap Code
+
+import { tileLayer, Map, LatLng } from 'leaflet';
+import HeatmapOverlay from 'leaflet-heatmap';
+
 const APIController = (function() {
   // API Methods
   const _getToken = async () => {
@@ -29,17 +34,12 @@ const APIController = (function() {
   };
 }());
 
-// Leaflet Map w/Heatmap Code
-
-const L = require('leaflet');
-const HeatmapOverlay = require('leaflet-heatmap')
-
 const testData = {
   max: 8,
   data: [{lat: 24.6408, lng: 46.7728, count: 3}, {lat: 50.75, lng: -1.55, count: 1}]
 };
 
-const baseLayer = L.tileLayer(
+const baseLayer = tileLayer(
   'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '...',
     maxZoom: 18
@@ -67,8 +67,8 @@ const cfg = {
 //
 const heatmapLayer = HeatmapOverlay(cfg);
 
-const map = new L.Map('map-canvas', {
-  center: new L.LatLng(25.6586, -80.3568),
+const map = new Map('map-canvas', {
+  center: new LatLng(25.6586, -80.3568),
   zoom: 4,
   layers: [baseLayer, heatmapLayer]
 });
