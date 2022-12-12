@@ -86,7 +86,12 @@ async function mainEvent() {
       console.log('input', event.target.value);
       const filteredLocs = filterData(currentList, event.target.value);
       injectHTML(filteredLocs);
-    })
+    });
+
+    form.addEventListener('submit', (submitEvent) => {
+      submitEvent.preventDefault();
+      injectHTML(currentList);
+    });
   }
 }
 
