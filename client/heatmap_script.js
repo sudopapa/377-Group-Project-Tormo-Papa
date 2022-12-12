@@ -31,6 +31,9 @@ const APIController = (function() {
 
 // Leaflet Map w/Heatmap Code
 
+const L = require('leaflet');
+const HeatmapOverlay = require('leaflet-heatmap')
+
 const testData = {
   max: 8,
   data: [{lat: 24.6408, lng: 46.7728, count: 3}, {lat: 50.75, lng: -1.55, count: 1}]
@@ -61,7 +64,7 @@ const cfg = {
   // which field name in your data represents the data value - default "value"
   valueField: 'count'
 };
-// 
+//
 const heatmapLayer = HeatmapOverlay(cfg);
 
 const map = new L.Map('map-canvas', {
