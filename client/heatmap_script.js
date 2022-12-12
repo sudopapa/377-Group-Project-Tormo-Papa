@@ -1,6 +1,8 @@
 const request = require('request');
 
 const accessToken = 'BQACX0bVaTJ99cc7DJwDua1RqDnpj-VXOPacGoI51GypyRWNwCS2wJdlkd--TIFoVXpSNCppN1D_Xv4RvJhu8d9gHzwVOVyuzgdpzaAw96yjWAOTtXtvnQDcj8TrHXq3aIKxbgPSbIdnJJDz74jcb0lNbQztUxoemvnvdyZ0DtwyzO8QAuNXlNiMgfUNaFFm7XU';
+  
+const countries = [];
 
 // Set the headers
 const headers = {
@@ -19,9 +21,6 @@ request(options, function (error, response, body) {
   if (!error && response.statusCode == 200) {
     // Parse the response body
     const data = JSON.parse(body);
-
-    // Create an array to hold the countries
-    const countries = [];
 
     // Loop through the genres and add each country to the array
     data.categories.items.forEach(genre => {
