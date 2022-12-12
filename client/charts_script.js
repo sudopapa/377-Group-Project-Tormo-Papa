@@ -1,8 +1,5 @@
 // API Init
 const { default: SpotifyWebApi } = require('spotify-web-api-js');
-const Spotify = require('spotify-web-api-js');
-
-const s = new Spotify();
 const spotifyApi = new SpotifyWebApi();
 spotifyApi.setAccessToken('BQBZp6lSx_VtsJ3lB7P52raLlzwrskbwumBEsGX-BD4lTCejdGPf9IwCJcJY98UMb2dDxSRudd6LrKd7N1gpQLTKIiT2OLVAkW-dqmjQDDilaVuHWhAFX_us25-8CFN1ivNjkECYFKrsg3JMu5D7TI14H_c1swFPr6muBeXH0oI2UjNIltBDewMF-UlY4aqu10WvBr0');
 
