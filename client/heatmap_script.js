@@ -1,16 +1,16 @@
-import request from 'request';
+var request = require('request');
 
-const accessToken = 'BQACX0bVaTJ99cc7DJwDua1RqDnpj-VXOPacGoI51GypyRWNwCS2wJdlkd--TIFoVXpSNCppN1D_Xv4RvJhu8d9gHzwVOVyuzgdpzaAw96yjWAOTtXtvnQDcj8TrHXq3aIKxbgPSbIdnJJDz74jcb0lNbQztUxoemvnvdyZ0DtwyzO8QAuNXlNiMgfUNaFFm7XU';
+var accessToken = 'BQACX0bVaTJ99cc7DJwDua1RqDnpj-VXOPacGoI51GypyRWNwCS2wJdlkd--TIFoVXpSNCppN1D_Xv4RvJhu8d9gHzwVOVyuzgdpzaAw96yjWAOTtXtvnQDcj8TrHXq3aIKxbgPSbIdnJJDz74jcb0lNbQztUxoemvnvdyZ0DtwyzO8QAuNXlNiMgfUNaFFm7XU';
   
-const countries = [];
+var countries = [];
 
 // Set the headers
-const headers = {
+var headers = {
   'Authorization': 'Bearer ' + accessToken
 }
 
 // Configure the request
-const options = {
+var options = {
   url: 'https://api.spotify.com/v1/browse/categories',
   method: 'GET',
   headers: headers
@@ -20,7 +20,7 @@ const options = {
 request(options, function (error, response, body) {
   if (!error && response.statusCode == 200) {
     // Parse the response body
-    const data = JSON.parse(body);
+    var data = JSON.parse(body);
 
     // Loop through the genres and add each country to the array
     data.categories.items.forEach(genre => {
@@ -35,7 +35,7 @@ request(options, function (error, response, body) {
 
 
 // Initial Leaflet Map
-const map = L.map('map').setView([38.9897, -76.9378], 11);
+var map = L.map('map').setView([38.9897, -76.9378], 11);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
