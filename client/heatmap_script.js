@@ -1,9 +1,37 @@
+const request = require('request');
+
+const accessToken = 'BQACX0bVaTJ99cc7DJwDua1RqDnpj-VXOPacGoI51GypyRWNwCS2wJdlkd--TIFoVXpSNCppN1D_Xv4RvJhu8d9gHzwVOVyuzgdpzaAw96yjWAOTtXtvnQDcj8TrHXq3aIKxbgPSbIdnJJDz74jcb0lNbQztUxoemvnvdyZ0DtwyzO8QAuNXlNiMgfUNaFFm7XU';
+
+// Set the headers
+const headers = {
+  'Authorization': 'Bearer ' + accessToken
+}
+
+// Configure the request
+const options = {
+  url: 'https://api.spotify.com/v1/browse/categories',
+  method: 'GET',
+  headers: headers
+}
+
+// Start the request
+request(options, function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+    // Print out the response body
+    console.log(body);
+  }
+});
+
+
+
 // Initial Leaflet Map
 const map = L.map('map').setView([38.9897, -76.9378], 11);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+
+
 
 
 // Leaflet Map w/Heatmap Code
