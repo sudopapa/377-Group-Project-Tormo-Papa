@@ -30,7 +30,7 @@
     L.Layer = L.Class;
   }
 
-  var HeatmapOverlay = L.Layer.extend({
+  const HeatmapOverlay = L.Layer.extend({
 
     initialize: function (config) {
       this.cfg = config;
