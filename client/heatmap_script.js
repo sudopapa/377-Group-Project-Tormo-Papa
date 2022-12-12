@@ -1,3 +1,4 @@
+// Filters out any results that do not include a school name
 function filterData(array, input) {
   return array.filter((item) => {
     if (!item.school_name) { return; }
@@ -8,6 +9,7 @@ function filterData(array, input) {
   });
 }
 
+// Inject HTML
 function injectHTML(list) {
   const target = document.querySelector('#loc_list');
   target.innerHTML = '';
@@ -21,6 +23,7 @@ function injectHTML(list) {
   });
 }
 
+// API Request Function
 async function getData() {
   const url = 'https://data.princegeorgescountymd.gov/resource/vkdv-rvfx.json';
   const data = await fetch(url);
