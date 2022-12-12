@@ -28,6 +28,9 @@ async function getData() {
   const data = await fetch(url);
   const json = await data.json();
   const reply = json.filter((item) => Boolean(item.school_name));
+
+  console.log(reply)
+
   return reply;
 }
 
@@ -49,7 +52,7 @@ async function mainEvent() {
 
     form.addEventListener('submit', (submitEvent) => {
       submitEvent.preventDefault();
-      injectHTML(currentList);
+      injectHTML(filteredLocs);
     });
   }
 }
