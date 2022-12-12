@@ -1,51 +1,10 @@
-import request from 'request';
-
-var accessToken = 'BQACX0bVaTJ99cc7DJwDua1RqDnpj-VXOPacGoI51GypyRWNwCS2wJdlkd--TIFoVXpSNCppN1D_Xv4RvJhu8d9gHzwVOVyuzgdpzaAw96yjWAOTtXtvnQDcj8TrHXq3aIKxbgPSbIdnJJDz74jcb0lNbQztUxoemvnvdyZ0DtwyzO8QAuNXlNiMgfUNaFFm7XU';
-  
-var countries = [];
-
-// Set the headers
-var headers = {
-  'Authorization': 'Bearer ' + accessToken
-}
-
-// Configure the request
-var options = {
-  url: 'https://api.spotify.com/v1/browse/categories',
-  method: 'GET',
-  headers: headers
-}
-
-// Start the request
-request(options, function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    // Parse the response body
-    var data = JSON.parse(body);
-
-    // Loop through the genres and add each country to the array
-    data.categories.items.forEach(genre => {
-      countries.push(genre.country);
-    });
-
-    // Print the array of countries
-    console.log(countries);
-  }
-});
-
-
 
 // Initial Leaflet Map
-var map = L.map('map').setView([38.9897, -76.9378], 11);
+const map = L.map('map').setView([38.9897, -76.9378], 11);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
-
-
-// Add a marker for each country in the countries array
-countries.forEach(country => {
-  L.marker([country.latitude, country.longitude]).addTo(map);
-});
 
 // Leaflet Map w/Heatmap Code
 /*
