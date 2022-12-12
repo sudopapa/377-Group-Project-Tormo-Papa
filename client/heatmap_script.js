@@ -61,7 +61,7 @@ const cfg = {
   // which field name in your data represents the data value - default "value"
   valueField: 'count'
 };
-
+// 
 const heatmapLayer = HeatmapOverlay(cfg);
 
 const map = new L.Map('map-canvas', {
