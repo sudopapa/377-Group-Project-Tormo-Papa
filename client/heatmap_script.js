@@ -71,7 +71,7 @@ function injectHTML() {
 
 // Main Function
 async function mainEvent() {
-  const pageMap = initMap();
+  // const pageMap = initMap();
 
   const form = document.querySelector('.main_form');
   const submit = document.querySelector('#get-loc');
@@ -80,7 +80,7 @@ async function mainEvent() {
   const resultsArray = await results.json();
 
   if (resultsArray.data?.length > 0) {
-    let currentList = [];
+    const currentList = [];
 
     form.addEventListener('input', (event) => {
       console.log('input', event.target.value);
