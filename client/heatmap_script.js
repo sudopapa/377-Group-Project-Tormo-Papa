@@ -43,7 +43,10 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-
+// Add a marker for each country in the countries array
+countries.forEach(country => {
+  L.marker([country.latitude, country.longitude]).addTo(map);
+});
 
 // Leaflet Map w/Heatmap Code
 /*
