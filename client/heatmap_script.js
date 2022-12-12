@@ -1,5 +1,3 @@
-
-
 function filterData(array, input) {
   return array.filter((item) => {
     if (!item.school_name) { return; }
@@ -10,7 +8,7 @@ function filterData(array, input) {
   });
 }
 
-function injectHTML() {
+function injectHTML(list) {
   const target = document.querySelector('#loc_list');
   target.innerHTML = '';
 
@@ -40,8 +38,6 @@ async function mainEvent() {
   const submit = document.querySelector('#get-loc');
 
   const resultsArray = await getData();
-
-  console.log(results);
 
   if (resultsArray.length > 0) {
     const currentList = [];
