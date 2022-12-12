@@ -62,7 +62,7 @@ const cfg = {
   valueField: 'count'
 };
 
-const heatmapLayer = new HeatmapOverlay(cfg);
+const heatmapLayer = HeatmapOverlay(cfg);
 
 const map = new L.Map('map-canvas', {
   center: new L.LatLng(25.6586, -80.3568),
