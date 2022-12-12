@@ -52,6 +52,7 @@ function filterData(array, input) {
     if (!item.school_name) { return; }
     const lowerCase = item.school_name.toLowerCase();
     const lowerCaseQuery = input.toLowerCase();
+    // eslint-disable-next-line consistent-return
     return lowerCase.includes(lowerCaseQuery);
   });
 }
