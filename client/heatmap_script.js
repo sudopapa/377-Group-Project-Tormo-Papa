@@ -17,8 +17,19 @@ const options = {
 // Start the request
 request(options, function (error, response, body) {
   if (!error && response.statusCode == 200) {
-    // Print out the response body
-    console.log(body);
+    // Parse the response body
+    const data = JSON.parse(body);
+
+    // Create an array to hold the countries
+    const countries = [];
+
+    // Loop through the genres and add each country to the array
+    data.categories.items.forEach(genre => {
+      countries.push(genre.country);
+    });
+
+    // Print the array of countries
+    console.log(countries);
   }
 });
 
