@@ -50,7 +50,7 @@ async function mainEvent() {
 
     form.addEventListener('submit', (submitEvent) => {
       submitEvent.preventDefault();
-      injectHTML(filteredLocs);
+      injectHTML(currentList);
     });
   }
 }
