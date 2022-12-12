@@ -43,7 +43,7 @@ async function mainEvent() {
   const resultsArray = await getData();
 
   if (resultsArray.length > 0) {
-    const currentList = [];
+    const currentList = resultsArray;
 
     form.addEventListener('input', (event) => {
       console.log('input', event.target.value);
