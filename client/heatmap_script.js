@@ -39,19 +39,11 @@ const APIController = (function() {
 })();
 
 
-
-// Initial Leaflet Map
-const map = L.map('map').setView([38.9897, -76.9378], 11);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-
 // Leaflet Map w/Heatmap Code
-/*
+
 var testData = {
     max: 8,
-    data: [{lat: 24.6408, lng:46.7728, count: 3},{lat: 50.75, lng:-1.55, count: 1}, ...]
+    data: [{lat: 24.6408, lng:46.7728, count: 3},{lat: 50.75, lng:-1.55, count: 1}]
   };
 
   var baseLayer = L.tileLayer(
@@ -90,4 +82,11 @@ var testData = {
 
   heatmapLayer.setData(testData);
 
-*/
+/* 
+// Initial Leaflet Map
+const map = L.map('map').setView([38.9897, -76.9378], 11);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+ */
