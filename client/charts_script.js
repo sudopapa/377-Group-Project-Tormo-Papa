@@ -22,6 +22,7 @@ function injectHTML(list) {
       el.innerText = item.name;
       listEl.appendChild(el);
     });
+}
 
 // Main Function
 async function mainEvent() {
@@ -34,5 +35,8 @@ async function mainEvent() {
           submitEvent.preventDefault();
           albumList = spotQuery(event.target.value);
           injectHTML(albumList);
-  });
+    });
+  }
 }
+
+document.addEventListener('DOMContentLoaded', async () => mainEvent());
