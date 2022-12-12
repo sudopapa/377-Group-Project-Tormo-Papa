@@ -21,22 +21,15 @@
             </div>
         </div>
         <div class ="primary_section">
-            placeholder chart
+            <form action="/api" class="main_form">
+                <div>
+                    <label for="spot"></label>
+                    <input type="text" name="spot" id="spot" />
+                </div>
+                <button type="submit" id="get-spot">Artist?</button>
+                </form>
             <div>
-                <table>
-                    <tr>
-                        <th>Country</th>
-                    </tr>
-                    <tr>
-                        <td>Indie Pop</td>
-                    </tr>
-                    <tr>
-                        <td>Electro Pop</td>
-                    </tr>
-                    <tr>
-                        <td>Electronic</td>
-                    </tr>
-                  </table> 
+                <div class="box" id="album_list">Top Albums!</div>
             </div>
         </div>
         <script src="https://ttormo.github.io/377-Group-Project-Tormo-Papa/client/script.js"></script>

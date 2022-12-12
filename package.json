@@ -26,6 +26,7 @@
     "request": "^2.88.2",
     "sequelize": "^6.5.0",
     "sequelize-cli": "^6.2.0",
+    "spotify-web-api-js": "^1.5.2",
     "webpack": "^5.75.0"
   },
   "devDependencies": {
