@@ -20,7 +20,15 @@ function injectHTML() {
     const el = document.createElement('li');
     el.innerText = item.school_name;
     listEl.appendChild(el);
-  })
+  });
+}
+
+async function getData() {
+  const url = 'https://data.princegeorgescountymd.gov/resource/vkdv-rvfx.json';
+  const data = await fetch(url);
+  const json = await data.json();
+  const reply = json.filter((item) => Boolean(item.school_name));
+  return reply;
 }
 
 // Main Function
@@ -28,8 +36,7 @@ async function mainEvent() {
   const form = document.querySelector('.main_form');
   const submit = document.querySelector('#get-loc');
 
-  const results = await fetch('/api/internetPG');
-  const resultsArray = await results.json();
+  const resultsArray = await getData();
 
   if (resultsArray.data?.length > 0) {
     const currentList = [];
