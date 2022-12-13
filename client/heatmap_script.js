@@ -88,7 +88,7 @@ async function mainEvent() {
 
   const resultsArray = await getData();
 
-  // initMap();
+  initMap();
 
   if (resultsArray.length > 0) {
     // const currentList = resultsArray;
