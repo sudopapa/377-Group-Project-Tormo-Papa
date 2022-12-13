@@ -39,6 +39,7 @@ async function getData() {
 
 // Map Creation
 function initMap() {
+  console.log('initMap');
   const testData = {
     max: 8,
     data: [{lat: 24.6408, lng: 46.7728, count: 3}, {lat: 50.75, lng: -1.55, count: 1}]
