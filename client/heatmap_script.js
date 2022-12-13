@@ -241,7 +241,8 @@
   return HeatmapOverlay;
 }));
 
-// ---------------------------------------------------------------------
+
+
 
 // Filters out items that don't include the input
 function filterData(array, input) {
