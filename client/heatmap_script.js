@@ -1,6 +1,5 @@
 // Imports
-import { tileLayer, Map, LatLng } from 'leaflet';
-import HeatmapOverlay from 'heatmap.js/plugins/leaflet-heatmap';
+import HeatmapOverlay from './leaflet-heatmap.js';
 
 // Filters out items that don't include the input
 function filterData(array, input) {
