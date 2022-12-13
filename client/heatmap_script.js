@@ -30,56 +30,48 @@ async function getData() {
   const json = await data.json();
   const reply = json.filter((item) => Boolean(item.school_name));
 
-  console.log(reply)
+  console.log(reply);
 
   return reply;
 }
 
-// Process 
+// Process
 
 // Map Creation
 function initMap() {
   console.log('initMap');
-  const testData = {
-    max: 8,
-    data: [{lat: 24.6408, lng: 46.7728, count: 3}, {lat: 50.75, lng: -1.55, count: 1}]
+
+  var testData = {
+    data: [{lat: 24.6408, lng:46.7728, count: 3},{lat: 50.75, lng:-1.55, count: 1}, ...]
   };
 
-  const baseLayer = tileLayer(
+  const baseLayer = L.tileLayer(
     'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '...',
-      maxZoom: 18
+      attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a>'
     }
   );
-
   const cfg = {
-    // radius should be small ONLY if scaleRadius is true (or small radius is intended)
-    // if scaleRadius is false it will be the constant radius used in pixels
-    radius: 2,
-    maxOpacity: 0.8,
-    // scales the radius based on map zoom
-    scaleRadius: true,
-    // if set to false the heatmap uses the global maximum for colorization
-    // if activated: uses the data maximum within the current map boundaries
-    //   (there will always be a red spot with useLocalExtremas true)
+    radius: 40,
     useLocalExtrema: true,
-    // which field name in your data represents the latitude - default "lat"
-    latField: 'lat',
-    // which field name in your data represents the longitude - default "lng"
-    lngField: 'lng',
-    // which field name in your data represents the data value - default "value"
-    valueField: 'count'
+    valueField: 'price'
   };
-  //
-  const heatmapLayer = HeatmapOverlay(cfg);
 
-  const map = new Map('map-canvas', {
-    center: new LatLng(25.6586, -80.3568),
-    zoom: 4,
+  const heatmapLayer = new HeatmapOverlay(cfg);
+
+  const min = 0;
+  const max = 10;
+
+  const propertyHeatMap = new L.Map('map', {
+    center: new L.LatLng(39.275, -76.613),
+    zoom: 15,
     layers: [baseLayer, heatmapLayer]
   });
 
-  heatmapLayer.setData(testData);
+  heatmapLayer.setData({
+    min: min,
+    max: max,
+    data: testData
+  });
 }
 
 // Main Function
