@@ -1,4 +1,4 @@
-// Filters out any results that do not include a school name
+// Filters out items that don't include the input
 function filterData(array, input) {
   return array.filter((item) => {
     if (!item.school_name) { return; }
@@ -43,17 +43,17 @@ async function mainEvent() {
   const resultsArray = await getData();
 
   if (resultsArray.length > 0) {
-    const currentList = resultsArray;
+    // const currentList = resultsArray;
 
     form.addEventListener('input', (event) => {
       console.log('input', event.target.value);
-      const filteredLocs = filterData(currentList, event.target.value);
+      const filteredLocs = filterData(resultsArray, event.target.value);
       injectHTML(filteredLocs);
     });
 
     form.addEventListener('submit', (submitEvent) => {
       submitEvent.preventDefault();
-      injectHTML(currentList);
+      injectHTML(resultsArray);
     });
   }
 }
