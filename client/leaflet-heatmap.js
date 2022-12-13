@@ -131,7 +131,7 @@
         const latlngPoint = { x: Math.round(point.x), y: Math.round(point.y) };
         latlngPoint[valueField] = value;
 
-        const radius;
+        let radius;
 
         if (entry.radius) {
           radius = entry.radius * radiusMultiplier;
