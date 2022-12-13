@@ -35,7 +35,29 @@ async function getData() {
   return reply;
 }
 
-// Process
+// Pull addresses
+function getAddresses(array) {
+  if (!item.location_1) { return; }
+  let addrList = [];
+  array.forEach((item) => {
+    addrList += item.location_1;
+  });
+  // eslint-disable-next-line consistent-return
+  return addrList;
+}
+
+// Get latlong
+function getLatLong(list) {
+  const geocoder = new google.maps.Geocoder();
+  const address = '10791 Forest Edge Cir';
+  geocoder.geocode({address: address}, (results, status) => {
+    if (status === 'OK') {
+      console.log(results);
+    } else {
+      alert('Geocode error; + status');
+    }
+  });
+}
 
 // Map Creation
 function initMap() {
