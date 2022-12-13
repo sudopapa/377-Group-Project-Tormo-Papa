@@ -1,5 +1,3 @@
-// Imports
-const HeatmapOverlay = require('./leaflet-heatmap.js');
 
 // Filters out items that don't include the input
 function filterData(array, input) {
