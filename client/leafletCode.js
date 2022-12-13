@@ -3,7 +3,7 @@
 // import HeatmapOverlay from 'leaflet-heatmap';
 
 // Leaflet Map w/Heatmap Code
-/* function initMap() {
+function initMap() {
   const testData = {
     max: 8,
     data: [{lat: 24.6408, lng: 46.7728, count: 3}, {lat: 50.75, lng: -1.55, count: 1}]
@@ -45,7 +45,7 @@
 
   heatmapLayer.setData(testData);
 }
-*/
+
 
 /*
 // Initial Leaflet Map
