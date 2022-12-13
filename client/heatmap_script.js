@@ -1,6 +1,6 @@
 // Imports
 import { tileLayer, Map, LatLng } from 'leaflet';
-import HeatmapOverlay from 'leaflet-heatmap';
+import HeatmapOverlay from 'heatmap.js/plugins/leaflet-heatmap';
 
 // Filters out items that don't include the input
 function filterData(array, input) {
@@ -38,6 +38,8 @@ async function getData() {
 
   return reply;
 }
+
+// Process 
 
 // Map Creation
 function initMap() {
