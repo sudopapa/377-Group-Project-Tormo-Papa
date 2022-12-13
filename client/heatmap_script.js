@@ -37,7 +37,6 @@ async function getData() {
 
 // Pull addresses
 function getAddresses(array) {
-  if (!item.location_1) { return; }
   let addrList = [];
   array.forEach((item) => {
     addrList += item.location_1;
