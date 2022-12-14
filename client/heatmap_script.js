@@ -102,8 +102,8 @@ async function mainEvent() {
 
   const resultsArray = await getData();
 
-  addrs = getAddresses(resultsArray);
-  getLatLong(addrs);
+  // addrs = getAddresses(resultsArray);
+  // getLatLong(addrs);
 
   // initMap();
 
