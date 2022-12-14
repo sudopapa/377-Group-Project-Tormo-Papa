@@ -105,7 +105,7 @@ async function mainEvent() {
   // addrs = getAddresses(resultsArray);
   // getLatLong(addrs);
 
-  // initMap();
+  // initMap(); 
 
   if (resultsArray.length > 0) {
     // const currentList = resultsArray;
